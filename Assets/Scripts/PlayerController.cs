@@ -1,11 +1,5 @@
-using FishNet.Connection;
-using FishNet.Example.ColliderRollbacks;
 using FishNet.Object;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -43,7 +37,7 @@ public class PlayerController : NetworkBehaviour
         }
         else
         {
-            gameObject.GetComponent<PlayerController>().enabled = false;
+            enabled = false;
         }
     }
 
