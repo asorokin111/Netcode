@@ -23,22 +23,22 @@ public class PlayerController : NetworkBehaviour
 
     private Vector3 _moveDir = Vector3.zero;
     private float _rotationX = 0;
+    private bool _canMove;
 
     public override void OnStartClient()
     {
         base.OnStartClient();
-        if (IsOwner)
-        {
-            _playerCam = Camera.main;
-            _playerCam.transform.position = new Vector3(transform.position.x,
-                transform.position.y + _cameraYOffset,
-                transform.position.z);
-            _playerCam.transform.SetParent(transform);
-        }
-        else
+        if (!IsOwner)
         {
             enabled = false;
+            return;
         }
+        _playerCam = Camera.main;
+        _playerCam.transform.position = new Vector3(transform.position.x,
+            transform.position.y + _cameraYOffset,
+            transform.position.z);
+        _playerCam.transform.SetParent(transform);
+        _canMove = true;
     }
 
     private void Start()
@@ -77,8 +77,8 @@ public class PlayerController : NetworkBehaviour
             _moveDir.y -= gravity * Time.deltaTime;
         }
 
-        // Move the controller
-        _characterController.Move(_moveDir * Time.deltaTime); // TODO: fix this throwing warnings on init by calling on an inactive controller
+        if (_canMove)
+            _characterController.Move(_moveDir * Time.deltaTime);
 
         // Player and Camera rotation
         if (canMove && _playerCam != null)
