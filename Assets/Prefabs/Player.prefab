@@ -16,8 +16,6 @@ GameObject:
   - component: {fileID: 6142204475294350707}
   - component: {fileID: 1642968845235983886}
   - component: {fileID: 226263961115552941}
-  - component: {fileID: 5703694828078074735}
-  - component: {fileID: 8560614445057371004}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -182,8 +180,8 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 6142204475294350707}
   - {fileID: 226263961115552941}
-  - {fileID: 5703694828078074735}
-  - {fileID: 8560614445057371004}
+  - {fileID: 0}
+  - {fileID: 0}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
@@ -245,36 +243,3 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
---- !u!114 &5703694828078074735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7157221640754360301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 533b00f19d6e0e14bba032955459d181, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 2
-  _addedNetworkObject: {fileID: 1642968845235983886}
-  _networkObjectCache: {fileID: 1642968845235983886}
-  health: 100
---- !u!114 &8560614445057371004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7157221640754360301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42081b50d8753d44f84ad6435da461c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 3
-  _addedNetworkObject: {fileID: 1642968845235983886}
-  _networkObjectCache: {fileID: 1642968845235983886}
-  damage: 10
-  attackCooldown: 0.6
