@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 226263961115552941}
   - component: {fileID: 6142204475294350707}
   - component: {fileID: 7640877086849248428}
+  - component: {fileID: 7018220105809895491}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -266,7 +267,6 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1642968845235983886}
   _networkObjectCache: {fileID: 1642968845235983886}
   speed: 4.5
-  sprintSpeed: 11.5
   jumpSpeed: 8
   gravity: 19.6
   lookSpeed: 2
@@ -297,3 +297,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _pickupTransform: {fileID: 56623036443232083}
+--- !u!114 &7018220105809895491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7157221640754360301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfd4643c0c3a854bb1008bbc771dacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 1642968845235983886}
+  _networkObjectCache: {fileID: 0}
