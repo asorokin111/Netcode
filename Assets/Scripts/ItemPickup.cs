@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class ItemPickup : NetworkBehaviour
 {
+    public delegate void GolfClubPickupAction();
+    public static event GolfClubPickupAction OnClubPickedUp;
+
+    public delegate void GolfClubDropAction();
+    public static event GolfClubDropAction OnClubDropped;
+
     [Header("Pickup inputs")]
     [SerializeField]
     private KeyCode _pickupButton = KeyCode.E;
@@ -68,6 +74,10 @@ public class ItemPickup : NetworkBehaviour
         {
             rb.isKinematic = false;
         }
+        if (_heldObject.CompareTag("GolfClub"))
+        {
+            OnClubDropped?.Invoke();
+        }
         _heldObject = null;
         _hasObjectInHand = false;
     }
@@ -90,5 +100,9 @@ public class ItemPickup : NetworkBehaviour
         }
         _heldObject = ob;
         _hasObjectInHand = true;
+        if (ob.CompareTag("GolfClub"))
+        {
+            OnClubPickedUp?.Invoke();
+        }
     }
 }
