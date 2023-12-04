@@ -5,6 +5,8 @@ using UnityEngine.Assertions;
 public class GolfClub : NetworkBehaviour
 {
     [SerializeField]
+    Transform _hitDirection;
+    [SerializeField]
     private float _hitDistance;
     [SerializeField]
     private float _maxHitForce;
@@ -99,7 +101,10 @@ public class GolfClub : NetworkBehaviour
     private void HitBallObserver(GameObject ball, float force)
     {
         if (!ball.TryGetComponent(out Rigidbody rb)) return;
-        var rbForce = _cam.transform.forward * force * 5;
+        Vector3 eulers = _hitDirection.eulerAngles;
+        eulers.x = 0;
+        _hitDirection.eulerAngles = eulers;
+        var rbForce = _hitDirection.forward * force * 5;
         rb.AddForce(rbForce);
     }
 
@@ -113,7 +118,10 @@ public class GolfClub : NetworkBehaviour
     private void HitPlayerObserver(GameObject player, float force)
     {
         if (!player.TryGetComponent(out Rigidbody rb)) return;
-        var rbForce = _cam.transform.forward * (force * 10f);
+        Vector3 eulers = _hitDirection.eulerAngles;
+        eulers.x = 0;
+        _hitDirection.eulerAngles = eulers;
+        var rbForce = _hitDirection.forward * (force * 10f);
         rb.AddForce(rbForce);
     }
 }
