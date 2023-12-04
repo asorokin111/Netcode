@@ -72,16 +72,19 @@ public class GolfClub : NetworkBehaviour
 
     private void Hit(float force)
     {
+        Debug.Log("Attempted hit");
         if (Physics.Raycast(_cam.transform.position, _cam.transform.forward, out RaycastHit hit, _hitDistance))
         {
             var target = hit.collider;
             if (target.CompareTag("Player"))
             {
                 HitPlayerServer(target.gameObject, force);
+                Debug.Log("Player hit");
             }
             else if (target.CompareTag("GolfBall"))
             {
                 HitBallServer(target.gameObject, force);
+                Debug.Log("Ball hit");
             }
         }
     }
@@ -96,7 +99,7 @@ public class GolfClub : NetworkBehaviour
     private void HitBallObserver(GameObject ball, float force)
     {
         if (!ball.TryGetComponent(out Rigidbody rb)) return;
-        var rbForce = _cam.transform.forward * force;
+        var rbForce = _cam.transform.forward * force * 5;
         rb.AddForce(rbForce);
     }
 
@@ -110,7 +113,7 @@ public class GolfClub : NetworkBehaviour
     private void HitPlayerObserver(GameObject player, float force)
     {
         if (!player.TryGetComponent(out Rigidbody rb)) return;
-        var rbForce = _cam.transform.forward * (force * 0.7f);
+        var rbForce = _cam.transform.forward * (force * 10f);
         rb.AddForce(rbForce);
     }
 }
