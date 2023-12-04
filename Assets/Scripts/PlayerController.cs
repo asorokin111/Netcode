@@ -5,7 +5,6 @@ public class PlayerController : NetworkBehaviour
 {
     [Header("Base variables")]
     public float speed = 7.5f;
-    public float sprintSpeed = 11.5f;
     public float jumpSpeed = 8.0f;
     public float gravity = 9.8f;
     public float lookSpeed = 2.0f;
@@ -49,17 +48,13 @@ public class PlayerController : NetworkBehaviour
 
     void Update()
     {
-        bool isRunning = false;
-
-        // Press Left Shift to run
-        isRunning = Input.GetKey(KeyCode.LeftShift);
 
         // We are grounded, so recalculate move direction based on axis
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
-        float curSpeedX = canMove ? (isRunning ? sprintSpeed : speed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? sprintSpeed : speed) * Input.GetAxis("Horizontal") : 0;
+        float curSpeedX = canMove ? speed * Input.GetAxis("Vertical") : 0;
+        float curSpeedY = canMove ? speed * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = _moveDir.y;
         _moveDir = (forward * curSpeedX) + (right * curSpeedY);
 
