@@ -190,6 +190,7 @@ MonoBehaviour:
   - {fileID: 226263961115552941}
   - {fileID: 6142204475294350707}
   - {fileID: 7640877086849248428}
+  - {fileID: 7018220105809895491}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
@@ -309,6 +310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfd4643c0c3a854bb1008bbc771dacf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1642968845235983886}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1642968845235983886}
+  _hitDistance: 10
+  _maxHitForce: 5
+  _forceAdded: 2
+  _initialHitForce: 1

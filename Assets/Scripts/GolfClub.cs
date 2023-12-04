@@ -1,5 +1,6 @@
 using FishNet.Object;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class GolfClub : NetworkBehaviour
 {
@@ -59,7 +60,8 @@ public class GolfClub : NetworkBehaviour
     {
         if (Input.GetButton("Fire1") && isClubHeld)
         {
-            _hitForce += _forceAdded * Time.deltaTime;
+            if (_hitForce < _maxHitForce)
+                _hitForce += _forceAdded * Time.deltaTime;
         }
         if (Input.GetButtonUp("Fire1") && isClubHeld)
         {
@@ -75,36 +77,40 @@ public class GolfClub : NetworkBehaviour
             var target = hit.collider;
             if (target.CompareTag("Player"))
             {
-                HitPlayerServer(target.gameObject);
+                HitPlayerServer(target.gameObject, force);
             }
             else if (target.CompareTag("GolfBall"))
             {
-                HitBallServer(target.gameObject);
+                HitBallServer(target.gameObject, force);
             }
         }
     }
 
     [ServerRpc (RequireOwnership = false)]
-    private void HitBallServer(GameObject ball)
+    private void HitBallServer(GameObject ball, float force)
     {
-        HitBallObserver(ball);
+        HitBallObserver(ball, force);
     }
 
     [ObserversRpc]
-    private void HitBallObserver(GameObject ball)
+    private void HitBallObserver(GameObject ball, float force)
     {
-
+        if (!ball.TryGetComponent(out Rigidbody rb)) return;
+        var rbForce = _cam.transform.forward * force;
+        rb.AddForce(rbForce);
     }
 
     [ServerRpc (RequireOwnership = false)]
-    private void HitPlayerServer(GameObject player)
+    private void HitPlayerServer(GameObject player, float force)
     {
-        HitPlayerObserver(player);
+        HitPlayerObserver(player, force);
     }
 
     [ObserversRpc]
-    private void HitPlayerObserver(GameObject player)
+    private void HitPlayerObserver(GameObject player, float force)
     {
-        
+        if (!player.TryGetComponent(out Rigidbody rb)) return;
+        var rbForce = _cam.transform.forward * (force * 0.7f);
+        rb.AddForce(rbForce);
     }
 }
