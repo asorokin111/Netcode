@@ -5,7 +5,9 @@ using UnityEngine.Assertions;
 public class GolfClub : NetworkBehaviour
 {
     [SerializeField]
-    Transform _hitDirection;
+    private Transform _hitDirection;
+    [SerializeField]
+    private LayerMask _golfMask;
     [SerializeField]
     private float _hitDistance;
     [SerializeField]
@@ -75,7 +77,7 @@ public class GolfClub : NetworkBehaviour
     private void Hit(float force)
     {
         Debug.Log("Attempted hit");
-        if (Physics.Raycast(_cam.transform.position, _cam.transform.forward, out RaycastHit hit, _hitDistance))
+        if (Physics.Raycast(_cam.transform.position, _cam.transform.forward, out RaycastHit hit, _hitDistance, _golfMask))
         {
             var target = hit.collider;
             if (target.CompareTag("Player"))
@@ -103,6 +105,7 @@ public class GolfClub : NetworkBehaviour
         if (!ball.TryGetComponent(out Rigidbody rb)) return;
         Vector3 eulers = _hitDirection.eulerAngles;
         eulers.x = 0;
+        eulers.z = 0;
         _hitDirection.eulerAngles = eulers;
         var rbForce = _hitDirection.forward * force * 5;
         rb.AddForce(rbForce);

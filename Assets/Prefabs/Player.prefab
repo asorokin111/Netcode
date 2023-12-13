@@ -347,6 +347,9 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1642968845235983886}
   _networkObjectCache: {fileID: 1642968845235983886}
   _hitDirection: {fileID: 7455683528194232463}
+  _golfMask:
+    serializedVersion: 2
+    m_Bits: 128
   _hitDistance: 50
   _maxHitForce: 5
   _forceAdded: 2
