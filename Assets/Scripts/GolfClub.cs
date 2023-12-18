@@ -1,9 +1,13 @@
 using FishNet.Object;
+using FishNet.Object.Synchronizing;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public class GolfClub : NetworkBehaviour
 {
+    public delegate void HitForceChangedAction(float maxForce, float currentForce, float initialForce);
+    public static event HitForceChangedAction OnHitForceChanged;
+
     [SerializeField]
     private Transform _hitDirection;
     [SerializeField]
@@ -17,6 +21,7 @@ public class GolfClub : NetworkBehaviour
     private float _forceAdded = 2;
     [SerializeField]
     private float _initialHitForce;
+    [SyncVar]
     private float _hitForce;
     private bool isClubHeld;
     private Camera _cam;
@@ -64,14 +69,28 @@ public class GolfClub : NetworkBehaviour
     {
         if (Input.GetButton("Fire1") && isClubHeld)
         {
-            if (_hitForce < _maxHitForce)
-                _hitForce += _forceAdded * Time.deltaTime;
+            IncreaseHitForce();
         }
         if (Input.GetButtonUp("Fire1") && isClubHeld)
         {
             Hit(_hitForce);
-            _hitForce = _initialHitForce;
+            ResetHitForce();
         }
+    }
+
+    [ServerRpc]
+    private void IncreaseHitForce()
+    {
+        if (_hitForce < _maxHitForce)
+            _hitForce += _forceAdded * Time.deltaTime;
+        OnHitForceChanged?.Invoke(_maxHitForce, _hitForce, _initialHitForce);
+    }
+
+    [ServerRpc]
+    private void ResetHitForce()
+    {
+        _hitForce = _initialHitForce;
+        OnHitForceChanged?.Invoke(_maxHitForce, _hitForce, _initialHitForce);
     }
 
     private void Hit(float force)
