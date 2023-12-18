@@ -21,7 +21,6 @@ public class GolfClub : NetworkBehaviour
     private float _forceAdded = 2;
     [SerializeField]
     private float _initialHitForce;
-    [SyncVar]
     private float _hitForce;
     private bool isClubHeld;
     private Camera _cam;
@@ -78,7 +77,6 @@ public class GolfClub : NetworkBehaviour
         }
     }
 
-    [ServerRpc]
     private void IncreaseHitForce()
     {
         if (_hitForce < _maxHitForce)
@@ -86,7 +84,6 @@ public class GolfClub : NetworkBehaviour
         OnHitForceChanged?.Invoke(_maxHitForce, _hitForce, _initialHitForce);
     }
 
-    [ServerRpc]
     private void ResetHitForce()
     {
         _hitForce = _initialHitForce;
@@ -95,19 +92,16 @@ public class GolfClub : NetworkBehaviour
 
     private void Hit(float force)
     {
-        Debug.Log("Attempted hit");
         if (Physics.Raycast(_cam.transform.position, _cam.transform.forward, out RaycastHit hit, _hitDistance, _golfMask))
         {
             var target = hit.collider;
             if (target.CompareTag("Player"))
             {
                 HitPlayerServer(target.gameObject, force);
-                Debug.Log("Player hit");
             }
             else if (target.CompareTag("GolfBall"))
             {
                 HitBallServer(target.gameObject, force);
-                Debug.Log("Ball hit");
             }
         }
     }
