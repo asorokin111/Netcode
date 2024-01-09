@@ -2,14 +2,9 @@ using UnityEngine;
 
 public class GolfBall : MonoBehaviour
 {
-    public delegate void GolfBallScoredAction(Score lastHitter);
+    public delegate void GolfBallScoredAction(GameObject lastHitter);
     public static event GolfBallScoredAction OnGolfBallScored;
-    private Score _lastHitter;
-
-    public void UpdateLastHitter(Score hitter)
-    {
-        _lastHitter = hitter;
-    }
+    private GameObject _lastHitter;
 
     private void OnTriggerEnter(Collider other)
     {

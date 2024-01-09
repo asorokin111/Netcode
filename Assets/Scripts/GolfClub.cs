@@ -24,12 +24,10 @@ public class GolfClub : NetworkBehaviour
     private float _hitForce;
     private bool isClubHeld;
     private Camera _cam;
-    private Score _localScore;
 
     private void Awake()
     {
         _hitForce = _initialHitForce;
-        _localScore = GetComponent<Score>();
     }
 
     private void ClubPickup()
@@ -117,7 +115,6 @@ public class GolfClub : NetworkBehaviour
     [ObserversRpc]
     private void HitBallObserver(GameObject ball, float force)
     {
-        var ballScript = ball.GetComponent<GolfBall>();
         if (!ball.TryGetComponent(out Rigidbody rb)) return;
         Vector3 eulers = _hitDirection.eulerAngles;
         eulers.x = 0;
@@ -125,7 +122,6 @@ public class GolfClub : NetworkBehaviour
         _hitDirection.eulerAngles = eulers;
         var rbForce = _hitDirection.forward * force * 5;
         rb.AddForce(rbForce);
-        ballScript.UpdateLastHitter(gameObject);
     }
 
     [ServerRpc (RequireOwnership = false)]
