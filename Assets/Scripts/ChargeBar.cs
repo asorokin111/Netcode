@@ -25,7 +25,6 @@ public class ChargeBar : MonoBehaviour
 
     private void UpdateChargeBar(float maxForce, float currentForce, float initialForce)
     {
-        Debug.Log("Current force: " + currentForce);
         _fill = /*Mathf.Clamp(currentForce / maxForce, 1.0f, 1.0f)*/currentForce / maxForce;
         if (currentForce <= initialForce)
         {
