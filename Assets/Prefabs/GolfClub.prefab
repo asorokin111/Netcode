@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 601585557576058379}
-  - component: {fileID: 7886913632861809998}
   - component: {fileID: 7870668399630223111}
   - component: {fileID: 5573302666424643871}
   - component: {fileID: 4256435748792236759}
+  - component: {fileID: 1135575591015448956}
+  - component: {fileID: 2022318540258164358}
   m_Layer: 6
   m_Name: GolfClub
   m_TagString: GolfClub
@@ -36,29 +37,6 @@ Transform:
   - {fileID: 6791653861894658752}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!136 &7886913632861809998
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3214709617949567775}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.027984342
-  m_Height: 2.0628095
-  m_Direction: 1
-  m_Center: {x: -0.0042706663, y: -0.0068240166, z: -0.002225047}
 --- !u!114 &7870668399630223111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +142,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!65 &1135575591015448956
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3214709617949567775}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.034090534, y: 1.81763, z: 0.018765194}
+  m_Center: {x: -0.0018994771, y: 0.09563276, z: -0.00016192999}
+--- !u!65 &2022318540258164358
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3214709617949567775}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.44003072, y: 0.18866964, z: 0.05778683}
+  m_Center: {x: 0.1928146, y: -0.9090158, z: -0.0018591546}
 --- !u!1001 &6470111673114524971
 PrefabInstance:
   m_ObjectHideFlags: 0
