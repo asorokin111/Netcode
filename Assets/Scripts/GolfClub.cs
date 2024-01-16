@@ -1,15 +1,13 @@
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class GolfClub : NetworkBehaviour
 {
     public delegate void HitForceChangedAction(float maxForce, float currentForce, float initialForce);
     public static event HitForceChangedAction OnHitForceChanged;
 
-    [SerializeField]
-    private GameObject _aimingDecalProjector;
-    [Header("Hit variables")]
     [SerializeField]
     private Transform _hitDirection;
     [SerializeField]
@@ -70,14 +68,12 @@ public class GolfClub : NetworkBehaviour
     {
         if (Input.GetButton("Fire1") && isClubHeld)
         {
-            _aimingDecalProjector.SetActive(true);
             IncreaseHitForce();
         }
         if (Input.GetButtonUp("Fire1") && isClubHeld)
         {
             Hit(_hitForce);
             ResetHitForce();
-            _aimingDecalProjector.SetActive(false);
         }
     }
 
