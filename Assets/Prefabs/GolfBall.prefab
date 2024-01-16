@@ -1,61 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &997189760489303990
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4176077031589500766}
-  - component: {fileID: 6362131171008923222}
-  m_Layer: 0
-  m_Name: DecalProjector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4176077031589500766
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997189760489303990}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.71324474, y: -0.01563956, z: -0.015361686, w: 0.70057225}
-  m_LocalPosition: {x: 0, y: 0.08, z: 1.5060002}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2388886201184785471}
-  m_LocalEulerAnglesHint: {x: 92.71399, y: 67.755, z: 67.778}
---- !u!114 &6362131171008923222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997189760489303990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 72b2165baaac7e24fa6892086d3cc530, type: 2}
-  m_DrawDistance: 1000
-  m_FadeScale: 0.9
-  m_StartAngleFade: 180
-  m_EndAngleFade: 180
-  m_UVScale: {x: 1, y: 1}
-  m_UVBias: {x: 0, y: 0}
-  m_DecalLayerMask: 1
-  m_ScaleMode: 0
-  m_Offset: {x: 0.015187681, y: 0.04758492, z: 0.102731936}
-  m_Size: {x: 0.28245056, y: 0.47089332, z: 0.34708452}
-  m_FadeFactor: 1
 --- !u!1 &8094657210847901828
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +35,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7237931096215264532}
-  - {fileID: 4176077031589500766}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &4735287719149400120
@@ -295,6 +238,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4ad120458a7f9d240807256a2c06dcc0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4ad120458a7f9d240807256a2c06dcc0, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4ad120458a7f9d240807256a2c06dcc0, type: 3}
       propertyPath: m_Name
