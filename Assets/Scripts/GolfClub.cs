@@ -23,6 +23,8 @@ public class GolfClub : NetworkBehaviour
     private float _forceAdded = 2;
     [SerializeField]
     private float _initialHitForce;
+    [SerializeField]
+    private float _forceMultiplier = 5.0f;
     private float _hitForce;
     private bool isClubHeld;
     private Camera _cam;
@@ -75,7 +77,7 @@ public class GolfClub : NetworkBehaviour
         }
         if (Input.GetButtonUp("Fire1") && isClubHeld)
         {
-            Hit(_hitForce);
+            Hit(_hitForce * _forceMultiplier);
             ResetHitForce();
             _aimingDecalProjector.SetActive(false);
         }
@@ -99,11 +101,7 @@ public class GolfClub : NetworkBehaviour
         if (Physics.Raycast(_cam.transform.position, _cam.transform.forward, out RaycastHit hit, _hitDistance, _golfMask))
         {
             var target = hit.collider;
-            if (target.CompareTag("Player"))
-            {
-                HitPlayerServer(target.gameObject, force);
-            }
-            else if (target.CompareTag("GolfBall"))
+            if (target.CompareTag("GolfBall"))
             {
                 HitBallServer(target.gameObject, force);
             }
@@ -124,24 +122,7 @@ public class GolfClub : NetworkBehaviour
         eulers.x = 0;
         eulers.z = 0;
         _hitDirection.eulerAngles = eulers;
-        var rbForce = _hitDirection.forward * force * 5;
-        rb.AddForce(rbForce);
-    }
-
-    [ServerRpc (RequireOwnership = false)]
-    private void HitPlayerServer(GameObject player, float force)
-    {
-        HitPlayerObserver(player, force);
-    }
-
-    [ObserversRpc]
-    private void HitPlayerObserver(GameObject player, float force)
-    {
-        if (!player.TryGetComponent(out Rigidbody rb)) return;
-        Vector3 eulers = _hitDirection.eulerAngles;
-        eulers.x = 0;
-        _hitDirection.eulerAngles = eulers;
-        var rbForce = _hitDirection.forward * (force * 10f);
+        var rbForce = _hitDirection.forward * force;
         rb.AddForce(rbForce);
     }
 }
