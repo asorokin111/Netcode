@@ -9,6 +9,11 @@ public class ScoreManager : NetworkBehaviour
     public static event ScoresUpdatedAction OnScoresUpdated;
     public Dictionary<string, int> scores = new();
 
+    public override void OnStartClient()
+    {
+        if (!IsOwner) enabled = false;
+    }
+
     private void Awake()
     {
         if (instance != null && instance != this)

@@ -71,6 +71,7 @@ public class ItemPickup : NetworkBehaviour
     private void DropHeldObjectObserver()
     {
         _heldObject.transform.SetParent(null);
+        _heldObject.layer = LayerMask.NameToLayer("Pickup");
         if (_heldObject.TryGetComponent(out Rigidbody rb))
         {
             rb.isKinematic = false;
@@ -92,6 +93,7 @@ public class ItemPickup : NetworkBehaviour
     [ObserversRpc]
     private void TakeObjectObserver(GameObject ob, Vector3 pos, Quaternion rotation, GameObject player)
     {
+        ob.layer = LayerMask.NameToLayer("Default");
         ob.transform.position = pos;
         ob.transform.rotation = rotation;
         ob.transform.SetParent(player.transform);
