@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class GolfBall : MonoBehaviour
 {
-    public delegate void GolfBallScoredAction(GameObject lastHitter);
-    public static event GolfBallScoredAction OnGolfBallScored;
-    private GameObject _lastHitter;
+    public GameObject lastHitter;
+    private Vector3 _respawnPosition;
 
-    private void OnTriggerEnter(Collider other)
+    private void Awake()
     {
-        if (other.CompareTag("Goal"))
-        {
-            OnGolfBallScored?.Invoke(_lastHitter);
-        }
+        _respawnPosition = transform.position;
+    }
+
+    public void Respawn()
+    {
+        lastHitter = null;
+        transform.position = _respawnPosition;
     }
 }

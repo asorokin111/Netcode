@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4239748289211835694}
   - component: {fileID: 7434931122088037358}
+  - component: {fileID: 8690371659774342620}
   m_Layer: 8
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Hole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,6 +56,18 @@ CapsuleCollider:
   m_Height: 3.9512491
   m_Direction: 1
   m_Center: {x: 0.038873434, y: -1.0083854, z: 0.048178077}
+--- !u!114 &8690371659774342620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7966746134381630045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c115b8872d74b84083f5b51fde000a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1668393560931588954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,6 +124,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 6abae1fab27cc744f98c98b2614b93a7, type: 3}
+      propertyPath: m_TagString
+      value: Hole
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6abae1fab27cc744f98c98b2614b93a7, type: 3}
       propertyPath: m_Name
       value: cylindrical_hole
@@ -130,6 +147,10 @@ PrefabInstance:
     - target: {fileID: 8513859187771203891, guid: 6abae1fab27cc744f98c98b2614b93a7, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513859187771203891, guid: 6abae1fab27cc744f98c98b2614b93a7, type: 3}
+      propertyPath: m_TagString
+      value: Hole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
