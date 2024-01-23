@@ -11,7 +11,7 @@ public class Goal : MonoBehaviour
         {
             if (!other.TryGetComponent(out GolfBall golfScript)) return;
             OnPlayerScored?.Invoke(golfScript.lastHitter.name);
-            golfScript.Respawn();
+            golfScript.RespawnServer();
         }
     }
 }

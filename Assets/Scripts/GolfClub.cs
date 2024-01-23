@@ -122,6 +122,8 @@ public class GolfClub : NetworkBehaviour
         eulers.x = 0;
         eulers.z = 0;
         _hitDirection.eulerAngles = eulers;
+        var ballScript = ball.GetComponent<GolfBall>();
+        ballScript.lastHitter = gameObject;
         var rbForce = _hitDirection.forward * force;
         rb.AddForce(rbForce);
     }

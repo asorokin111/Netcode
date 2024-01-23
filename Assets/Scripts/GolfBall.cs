@@ -1,18 +1,31 @@
+using FishNet.Object;
 using UnityEngine;
 
-public class GolfBall : MonoBehaviour
+public class GolfBall : NetworkBehaviour
 {
     public GameObject lastHitter;
     private Vector3 _respawnPosition;
 
-    private void Awake()
+    public override void OnStartClient()
     {
+        if (!IsOwner) enabled = false;
         _respawnPosition = transform.position;
     }
 
-    public void Respawn()
+    [ServerRpc (RequireOwnership = false)]
+    public void RespawnServer()
+    {
+        RespawnObserver();
+    }
+
+    [ObserversRpc]
+    private void RespawnObserver()
     {
         lastHitter = null;
+        var rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        rb.velocity = Vector3.zero;
         transform.position = _respawnPosition;
+        rb.constraints = RigidbodyConstraints.None;
     }
 }
