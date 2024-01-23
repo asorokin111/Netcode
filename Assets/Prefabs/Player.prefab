@@ -356,6 +356,7 @@ MonoBehaviour:
   _maxHitForce: 5
   _forceAdded: 2
   _initialHitForce: 1
+  _forceMultiplier: 5
 --- !u!54 &-6785543610355016645
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -436,6 +437,6 @@ MonoBehaviour:
   m_UVBias: {x: 0, y: 0}
   m_DecalLayerMask: 4294967295
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0.2757162, z: 0.16304415}
-  m_Size: {x: 1, y: 1.5514324, z: 2.171482}
+  m_Offset: {x: 0, y: 0.2757162, z: 1.8492231}
+  m_Size: {x: 1, y: 1.5514324, z: 5.5438414}
   m_FadeFactor: 1
