@@ -9,11 +9,6 @@ public class ScoreManager : NetworkBehaviour
     public static event ScoresUpdatedAction OnScoresUpdated;
     public Dictionary<string, int> scores = new();
 
-    public override void OnStartClient()
-    {
-        if (!IsOwner) enabled = false;
-    }
-
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -36,7 +31,7 @@ public class ScoreManager : NetworkBehaviour
         Goal.OnPlayerScored -= UpdateScoresServer;
     }
 
-    [ServerRpc]
+    [ServerRpc (RequireOwnership = false)]
     private void UpdateScoresServer(string scoringPlayer)
     {
         UpdateScoresObserver(scoringPlayer);
