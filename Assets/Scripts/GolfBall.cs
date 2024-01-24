@@ -1,9 +1,10 @@
+using FishNet.Connection;
 using FishNet.Object;
 using UnityEngine;
 
 public class GolfBall : NetworkBehaviour
 {
-    public GameObject lastHitter;
+    public NetworkConnection lastHitter;
     private Vector3 _respawnPosition;
 
     public override void OnStartClient()

@@ -10,7 +10,7 @@ public class Goal : MonoBehaviour
         if (other.CompareTag("GolfBall"))
         {
             if (!other.TryGetComponent(out GolfBall golfScript)) return;
-            OnPlayerScored?.Invoke(golfScript.lastHitter.name);
+            OnPlayerScored?.Invoke(golfScript.lastHitter.ClientId.ToString());
             golfScript.RespawnServer();
         }
     }

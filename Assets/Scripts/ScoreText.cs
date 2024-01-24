@@ -25,7 +25,7 @@ public class ScoreText : MonoBehaviour
         _scoreText.text = "";
         foreach (KeyValuePair<string, int> entry in ScoreManager.instance.scores)
         {
-            _scoreText.text += entry.Key + " - " + entry.Value + '\n';
+            _scoreText.text += "Player " + entry.Key + " - " + entry.Value + '\n';
         }
     }
 }
