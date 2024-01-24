@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    public delegate void PlayerScoredAction(string player);
+    public delegate void PlayerScoredAction(int player);
     public static event PlayerScoredAction OnPlayerScored;
 
     private void OnTriggerEnter(Collider other)
@@ -10,7 +10,7 @@ public class Goal : MonoBehaviour
         if (other.CompareTag("GolfBall"))
         {
             if (!other.TryGetComponent(out GolfBall golfScript)) return;
-            OnPlayerScored?.Invoke(golfScript.lastHitter.ClientId.ToString());
+            OnPlayerScored?.Invoke(golfScript.lastHitter.ClientId);
             golfScript.RespawnServer();
         }
     }

@@ -1,4 +1,3 @@
-using FishNet.Connection;
 using FishNet.Object;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +7,7 @@ public class ScoreManager : NetworkBehaviour
     public static ScoreManager instance;
     public delegate void ScoresUpdatedAction();
     public static event ScoresUpdatedAction OnScoresUpdated;
-    public Dictionary<string, int> scores = new();
+    public SortedDictionary<int, int> scores = new();
 
     private void Awake()
     {
@@ -33,13 +32,13 @@ public class ScoreManager : NetworkBehaviour
     }
 
     [ServerRpc (RequireOwnership = false)]
-    private void UpdateScoresServer(string scoringPlayer)
+    private void UpdateScoresServer(int scoringPlayer)
     {
         UpdateScoresObserver(scoringPlayer);
     }
 
     [ObserversRpc]
-    private void UpdateScoresObserver(string scoringPlayer)
+    private void UpdateScoresObserver(int scoringPlayer)
     {
         if (scores.ContainsKey(scoringPlayer))
         {

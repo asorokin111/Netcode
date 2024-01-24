@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -23,7 +22,7 @@ public class ScoreText : MonoBehaviour
     private void UpdateScoreText()
     {
         _scoreText.text = "";
-        foreach (KeyValuePair<string, int> entry in ScoreManager.instance.scores)
+        foreach (var entry in ScoreManager.instance.scores)
         {
             _scoreText.text += "Player " + entry.Key + " - " + entry.Value + '\n';
         }
