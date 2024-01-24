@@ -7,7 +7,7 @@ public class ScoreManager : NetworkBehaviour
     public static ScoreManager instance;
     public delegate void ScoresUpdatedAction();
     public static event ScoresUpdatedAction OnScoresUpdated;
-    public SortedDictionary<int, int> scores = new();
+    public Dictionary<int, int> scores = new();
 
     private void Awake()
     {
