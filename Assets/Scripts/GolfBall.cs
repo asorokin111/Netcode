@@ -25,7 +25,6 @@ public class GolfBall : NetworkBehaviour
         lastHitter = null;
         var rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        rb.velocity = Vector3.zero;
         transform.position = _respawnPosition;
         rb.constraints = RigidbodyConstraints.None;
     }
