@@ -1,3 +1,4 @@
+using FishNet.Connection;
 using FishNet.Object;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ public class GolfClub : NetworkBehaviour
 {
     public delegate void HitForceChangedAction(float maxForce, float currentForce, float initialForce);
     public static event HitForceChangedAction OnHitForceChanged;
+    public delegate void BallHitAction(NetworkConnection lastHitter);
+    public static event BallHitAction OnBallHit;
 
     [SerializeField]
     private GameObject _aimingDecalProjector;
@@ -121,8 +124,7 @@ public class GolfClub : NetworkBehaviour
         eulers.x = 0;
         eulers.z = 0;
         _hitDirection.eulerAngles = eulers;
-        var ballScript = ball.GetComponent<GolfBall>();
-        ballScript.lastHitter = Owner;
+        OnBallHit?.Invoke(Owner);
         var rbForce = _hitDirection.forward * force;
         rb.AddForce(rbForce);
     }

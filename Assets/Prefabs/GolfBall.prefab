@@ -196,6 +196,9 @@ MonoBehaviour:
   _componentIndexCache: 2
   _addedNetworkObject: {fileID: 9169943705308244567}
   _networkObjectCache: {fileID: 9169943705308244567}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1001 &7203774264071650047
 PrefabInstance:
   m_ObjectHideFlags: 0
