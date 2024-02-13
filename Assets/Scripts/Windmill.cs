@@ -9,12 +9,8 @@ public class Windmill : NetworkBehaviour
 
     private void OnEnable()
     {
-        InstanceFinder.TimeManager.OnTick += SpinServer;
-    }
-
-    private void OnDisable()
-    {
-        InstanceFinder.TimeManager.OnTick -= SpinServer;
+        if (IsServer)
+            InstanceFinder.TimeManager.OnTick += SpinServer;
     }
 
     [ServerRpc (RequireOwnership = false)]
