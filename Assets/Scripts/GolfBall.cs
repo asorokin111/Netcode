@@ -32,49 +32,41 @@ public class GolfBall : NetworkBehaviour
         lastHitter = hitter;
     }
 
-    [ServerRpc (RequireOwnership = false)]
-    public void RespawnServer()
+    public void RespawnAtStart()
     {
-        RespawnObserver();
+        RespawnServer(_respawnPosition);
+    }
+
+    public void RespawnAtLastHit()
+    {
+        RespawnServer(_lastHitPosition);
+    }
+
+    [ServerRpc (RequireOwnership = false)]
+    private void RespawnServer(Vector3 whereToRespawn)
+    {
+        RespawnObserver(whereToRespawn);
     }
 
     [ObserversRpc]
-    private void RespawnObserver()
+    private void RespawnObserver(Vector3 whereToRespawn)
     {
         lastHitter = null;
         var rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        transform.position = _respawnPosition;
+        transform.position = whereToRespawn;
         rb.constraints = RigidbodyConstraints.None;
     }
 
-    // Soft respawn - respawns the ball at the location of last hit
-    [ServerRpc (RequireOwnership = false)]
-    public void SoftRespawnServer()
-    {
-        SoftRespawnObserver();
-    }
-
-    [ObserversRpc]
-    private void SoftRespawnObserver()
-    {
-        // Basically the same as normal respawn, but with different position. Should use the same function for both honestly
-        lastHitter = null;
-        var rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeAll;
-        transform.position = _lastHitPosition;
-        rb.constraints = RigidbodyConstraints.None;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Collision started");
-        if (collision.gameObject.layer != _groundLayer)
-        {
-            Debug.Log("Layer not matching the needed layer");
-            return;
-        }
-        Debug.Log("Layer matched");
-        SoftRespawnObserver();
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("Collision started");
+    //    if (collision.gameObject.layer != _groundLayer)
+    //    {
+    //        Debug.Log("Layer not matching the needed layer");
+    //        return;
+    //    }
+    //    Debug.Log("Layer matched");
+    //    RespawnAtLastHit();
+    //}
 }
