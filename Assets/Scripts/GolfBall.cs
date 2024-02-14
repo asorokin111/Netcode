@@ -5,31 +5,15 @@ using UnityEngine;
 public class GolfBall : NetworkBehaviour
 {
     public NetworkConnection lastHitter;
+    public Vector3 lastHitPosition;
     [SerializeField]
     private LayerMask _groundLayer;
-    private Vector3 _lastHitPosition;
     private Vector3 _respawnPosition;
-
-    private void OnEnable()
-    {
-        GolfClub.OnBallHit += RegisterBallHit;
-    }
-
-    private void OnDisable()
-    {
-        GolfClub.OnBallHit -= RegisterBallHit;
-    }
 
     public override void OnStartClient()
     {
         if (!IsOwner) enabled = false;
         _respawnPosition = transform.position;
-    }
-
-    private void RegisterBallHit(NetworkConnection hitter)
-    {
-        _lastHitPosition = transform.position;
-        lastHitter = hitter;
     }
 
     public void RespawnAtStart()
@@ -39,7 +23,7 @@ public class GolfBall : NetworkBehaviour
 
     public void RespawnAtLastHit()
     {
-        RespawnServer(_lastHitPosition);
+        RespawnServer(lastHitPosition);
     }
 
     [ServerRpc (RequireOwnership = false)]
